@@ -5,18 +5,21 @@ input: process.stdin,
 output: process.stdout
 });
 const menu = `(v) View • (n) New • (cX) Complete • (dX) Delete • (q) Quit`
+masterList=[]
 const headLine = (header) => {
   interface.question(header, (userAns) => {
     if(userAns==='v'){
-      list();
+      list()
       headLine(`\n${menu}\n`);
     } else if (userAns==='n'){
       interface.question('What?\n', (addList) => {
-        list(addList)
-      });
+      masterList = list(addList)
       headLine(`\n${menu}\n`);
+      });
     } else if(userAns.charAt(0)==='c' && userAns.length===2){
-
+      
+      masterList = completePro(masterList, userAns.charAt(1))
+      headLine(`\n${menu}\n`);
     } else if(userAns.charAt(0)==='d' && userAns.length===2){
 
     } else if(userAns==='q'){
@@ -32,14 +35,28 @@ const uncheck='[ ]'
 const check='[✓]'
 
 const list = (newList) =>{  
-  
   if(doList.length ===0 && newList===undefined){
     console.log('List is emtpy.....Nothing to show')
-  }else if(newList!=undefined && newList!='null'){
-    doList.push(`${doList.length+1} ${uncheck} ${newList}`)
+  }else if(newList!=undefined) {
+    doList.push({index: doList.length, complete: uncheck, task: newList})
+    console.log(`\n\"${newList}\" added`)
+  } else {
+    for(let value of doList){
+      console.log(Object.values(value));
+    }
   }
-  console.log(`\n${doList.join('\n')}`)
-  return headLine(`${menu}\n`);
+  return doList;
+}
+
+const completePro = (masterList, itemNum) =>{  
+  // let singleList = []
+  // singleList = masterList[itemNum].split(' ')
+  // singleList = singleList.splice(1,0,'[✓]').join(' ')
+  // console.log(singleList)
+  console.log(masterList)
+  // console.log(typeof singleList)
+
+  // return singleList;
 }
 
 
