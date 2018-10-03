@@ -1,9 +1,12 @@
 
 const readLine = require("readline");
 const interface = readLine.createInterface( {
-input: process.stdin,
-output: process.stdout
+  input: process.stdin,
+  output: process.stdout
 });
+const doList=[]
+const uncheck='[ ]'
+const checked='[💯]'
 const menu = `(v) View • (n) New • (cX) Complete • (dX) Delete • (q) Quit`
 masterList=[]
 const headLine = (header) => {
@@ -16,12 +19,15 @@ const headLine = (header) => {
       masterList = list(addList)
       headLine(`\n${menu}\n`);
       });
-    } else if(userAns.charAt(0)==='c' && userAns.length===2){
-      
-      masterList = completePro(masterList, userAns.charAt(1))
+    } else if(userAns.charAt(0)==='c' && Number.isInteger(parseInt(userAns.charAt(1)))){
+      masterList[(parseInt(userAns.charAt(1)))].complete = checked
+      console.log(Object.values(masterList[parseInt(userAns.charAt(1))]).join(' '))
       headLine(`\n${menu}\n`);
-    } else if(userAns.charAt(0)==='d' && userAns.length===2){
-
+    } else if(userAns.charAt(0)==='d' && Number.isInteger(parseInt(userAns.charAt(1)))){
+      let index=parseInt(userAns.charAt(1))
+      let deleteList = masterList.splice(index, 1)
+      console.log(`Deleted \"${deleteList[0].task}\"`)
+      headLine(`\n${menu}\n`);
     } else if(userAns==='q'){
       console.log('bye')
       process.exit();
@@ -30,9 +36,6 @@ const headLine = (header) => {
     }
   });
 }
-const doList=[]
-const uncheck='[ ]'
-const check='[✓]'
 
 const list = (newList) =>{  
   if(doList.length ===0 && newList===undefined){
@@ -42,22 +45,12 @@ const list = (newList) =>{
     console.log(`\n\"${newList}\" added`)
   } else {
     for(let value of doList){
-      console.log(Object.values(value));
+      console.log(Object.values(value).join(' '));
     }
   }
   return doList;
 }
 
-const completePro = (masterList, itemNum) =>{  
-  // let singleList = []
-  // singleList = masterList[itemNum].split(' ')
-  // singleList = singleList.splice(1,0,'[✓]').join(' ')
-  // console.log(singleList)
-  console.log(masterList)
-  // console.log(typeof singleList)
-
-  // return singleList;
-}
 
 
 
