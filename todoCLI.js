@@ -29,7 +29,7 @@ const headLine = (header) => {
       console.log(`Deleted \"${deleteList[0].task}\"`)
       headLine(`\n${menu}\n`);
     } else if(userAns==='q'){
-      console.log('bye')
+      console.log('See you around! 👋👋')
       process.exit();
     } else {
       headLine(`Can not read, try again\n`);
@@ -53,5 +53,5 @@ const list = (newList) =>{
 
 
 
-
 headLine(`Welcome to TODO CLI! \n --------------------------------------------------------\n(v) View • (n) New • (cX) Complete • (dX) Delete • (q) Quit\n`)
+
