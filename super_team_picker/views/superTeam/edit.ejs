@@ -1,0 +1,40 @@
+<%- include("../partials/header") %>
+
+<h1>Edit Cohort</h1>
+
+<form action="/cohort/<%= cohort.id%>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <div class="form-group">
+  <h6>Logo Url</h6>
+  <input
+    type="text"
+    class="form-control"
+    name="logoUrl"
+    placeholder="e.g. https://www.example.com/some.png"
+    value="<%= cohort.logoUrl %>"
+    >
+  </div>
+  <h6>Name</h6>
+  <div class="form-group">
+  <input
+    type="text"
+    class="form-control"
+    name="Name"
+    placeholder="e.g. Space Jam"
+    value="<%= cohort.Name %>">
+  </div>
+  <h6>Members</h6>
+  <div class="form-group">
+    <textarea
+      class="form-control"
+      name="Members"
+      cols="60"
+      rows="5"
+      placeholder="e.g. Michael Jordon, Kobe Bryan, Kevin Garnett, Vince Carter"
+      ><%= cohort.Members %>
+    </textarea>
+  </div>
+  <input type="submit" value="Save Changes" class="btn btn-outline-primary">
+</form>
+
+<%- include("../partials/footer") %>
