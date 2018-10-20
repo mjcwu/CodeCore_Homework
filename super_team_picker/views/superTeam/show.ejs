@@ -1,0 +1,59 @@
+<%- include("../partials/header") %>
+  <form action="/cohort/<%= cohort.id %>" method="POST">
+    <div class="card p-3">
+      <div class="border-bottom mb-3">
+        <h5 class="card-name">
+          <%= cohort.Name %>
+        </h5>
+        <a
+          href="/cohort/<%= cohort.id %>/edit"
+          class="btn btn-outline-primary mr-2">
+          Edit
+        </a>
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete" class="btn btn-outline-danger">
+        <div class="card-name ml-0 mb-3">
+          <p class="card-text">
+            <%= cohort.Members %> <br>
+          </p>
+        </div>
+    </div>
+  </form>
+  <form  action="/cohort/<%=cohort.id%>" method="GET">
+    <div class="border-bottom mb-3">
+      <h6 class="card-name">Method</h6>
+      <div class="card-name ml-0 mb-3">
+        <input type="radio" name="method" value="teamCount" class="primary">Team Count<br>
+        <input type="radio" name="method" value="numberPerTeam" class="primary">Number Per Team<br>
+      </div>
+    </div>
+      <div >
+        <h6 class="card-name">Quantity</h6>
+        <input
+        type="text"
+        class="form-control mb-2"
+        name="quantity"> 
+        <input type="submit" class="btn btn-outline-primary btn-block mb-3" value="Assign Teams!">
+      </div>
+  </form>
+    <!-- ****************** after team selection **************-->
+
+    <% if (teams!= 0) { %>
+
+    <div class="">
+      <div class="d-flex flex-row border-bottom">
+        <h5 class="p-2 flex-shrink-2 bd-highlight">#</h5>
+        <h5 class="p-2 w-100 bd-highlight">Members</h5>
+      </div>
+      <% for (let i=0; i<teams.length; i+=1) { %>
+      <div class="d-flex flex-row border-bottom">
+        <h6 class="p-2 flex-shrink-2 bd-highlight"><%= i+1 %></h6>
+        <h6 class="p-2 w-100 bd-highlight"><%= teams[i] %></h6>
+      </div>
+
+      <% } %>
+    </div>
+
+    <% } %>
+  </div>
+  <%- include("../partials/footer") %>
