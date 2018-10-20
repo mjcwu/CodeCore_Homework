@@ -42,7 +42,7 @@ router.get("/cohort/:id", (req, res) => {
         teams = assignTeam(quantity, method, cohort.Members)
         res.render("superTeam/show", {cohort: cohort, teams: teams});
       } else {
-        
+      
         let teams=[]
         
         res.render("superTeam/show", {cohort: cohort, teams: teams});
