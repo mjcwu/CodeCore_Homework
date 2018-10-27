@@ -7,7 +7,7 @@ NUM_OF_POSTS = 75
 
 NUM_OF_POSTS.times do
   p = Post.create(
-    title: Faker::Games::Pokemon.name,
+    title: Faker::JapaneseMedia::DragonBall.character,
     body: Faker::GameOfThrones.quote
   )
   if p.valid?
