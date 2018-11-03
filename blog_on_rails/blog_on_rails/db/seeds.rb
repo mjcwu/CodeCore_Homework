@@ -1,9 +1,17 @@
 # Cleaning up existing data
 Post.destroy_all
 Comment.destroy_all
-
+User.destroy_all
 
 NUM_OF_POSTS = 75
+PASSWORD = "supersecret"
+
+super_user = User.create(
+  name: "Jon",
+  email: "js@winterfell.gov",
+  password: PASSWORD,
+  admin: true
+)
 
 NUM_OF_POSTS.times do
   p = Post.create(

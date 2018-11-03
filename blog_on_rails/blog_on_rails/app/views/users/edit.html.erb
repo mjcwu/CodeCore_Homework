@@ -1,0 +1,26 @@
+
+<div class="text-primary m-3">
+  <h1>Update User Information</h1>
+
+  <% if @user.errors.any? %>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form_for @user do |f|%>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </div>
+    
+    <%= f.submit %>
+  <% end %>
+    <%= button_to "Update Password", { action: "edit_password"}, method: :get, class: "mt-2"%>
+</div>
