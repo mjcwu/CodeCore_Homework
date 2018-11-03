@@ -1,0 +1,31 @@
+# Cleaning up existing data
+Post.destroy_all
+Comment.destroy_all
+User.destroy_all
+
+NUM_OF_POSTS = 75
+PASSWORD = "supersecret"
+
+super_user = User.create(
+  name: "Jon",
+  email: "js@winterfell.gov",
+  password: PASSWORD,
+  admin: true
+)
+
+NUM_OF_POSTS.times do
+  p = Post.create(
+    title: Faker::JapaneseMedia::DragonBall.character,
+    body: Faker::GameOfThrones.quote
+  )
+  if p.valid?
+    rand(0..15).times do
+      p.comments << Comment.new(
+        body: Faker::GreekPhilosophers.quote,
+      )
+    end
+  end
+end
+
+puts ("Generated #{Post.count} posts")
+puts ("Generated #{Comment.count} comments")

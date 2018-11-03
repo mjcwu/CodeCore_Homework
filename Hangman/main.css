@@ -1,0 +1,83 @@
+
+.section1 {
+  display: inline-block;
+  float: left;
+  margin-bottom: 50px;
+}
+
+.headline{
+  margin: 20px;
+}
+
+.container1 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.container3 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.section2 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 20px;
+}
+
+#hangmanPic {
+  width: 600px;
+  height: 700px;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url(./images/GALLOWS.jpg);
+ 
+}
+
+#reset {
+  font-size: 40px;
+  cursor: pointer;
+  border-radius: 5px;
+  float: centre;
+  margin-right: 20px;
+}
+
+.guessWord {
+  margin: 20px;
+  font-size: 40px;
+  text-align: center;
+}
+
+/* Sizes */
+
+.small {
+  width: 35px;
+  height: 35px;
+}
+
+
+/* Shapes */
+
+.square {
+  transform: rotate(-45deg);
+  text-align: center;
+}
+
+.diamond {
+  transform: rotate(45deg);
+  margin: 20px;
+  border-style: solid;
+  border-color: blue;
+  font-size: 30px;
+  text-align: center;
+}
+
+.rectangle {
+  width: 50px;
+  height: 50px;
+  border-bottom: 2px solid black;
+}

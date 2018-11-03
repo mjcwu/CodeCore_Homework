@@ -1,0 +1,66 @@
+<div class="m-3">
+  <h1><%= @post.title %></h1>
+  <h4>Created by: <%= @post.user&.name || '[DELETED]' %></h4>
+  <p><%= @post.body %></p>
+
+  <div class="mb-2">
+    <small>
+      Posted <%= time_ago_in_words(@post.created_at) %> ago
+    </small>
+    <div class="row mb-3 ">
+      <% if can?(:edit, @post) %>
+        <%= button_to "Edit", { action: "edit", id: @post.id }, method: :get, class: "ml-3 mt-1 btn btn-outline-primary"%>
+      <% end %>
+      <% if can?(:delete, @post) %>
+        <%= button_to "Delete", { action: "destroy", id: @post.id }, method: :delete, class: "ml-2 mt-1 btn btn-outline-primary "%>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <%= form_for([@post, @comment]) do |form| %>
+      <% if @comment.errors.present? %>
+        <p>
+          <%= @comment.errors.full_messages.join(", ") %>
+        </p>
+      <% end %>
+
+      <div class="form-group">
+        <h4>Comment</h4>
+        <%= form.text_area :body, class: "form-control", placeholder: "What are your thoughts?" %>
+      </div>
+
+      <%= form.submit "Submit", class: "btn btn-outline-primary" %>
+    <% end %>
+  </div>
+
+
+  <ul class="comment-list p-0">
+    <% @comments.each do |comment| %>
+        <p>
+          <%= comment.body %> <br>
+          <small>
+          Created by: <%= comment.user&.name || "[DELETE]"  %>
+          </small>
+            • 
+          <small>
+            commented <%= time_ago_in_words(comment.created_at) %> ago
+          </small>
+            •
+          <% if can? :delete, comment %>
+            <small>
+              <%= link_to(
+                "Delete",
+                post_comment_path(@post, comment),
+                method: :delete,
+                data: {
+                  confirm: "Are you positive?"
+                }
+              ) %>
+            </small>
+          <% end %>
+         
+        </p>
+    <% end %>
+  </ul>
+</div>
